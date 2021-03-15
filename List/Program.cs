@@ -6,7 +6,20 @@ namespace List
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello World!");
+
+            ArrayList Oleg = new ArrayList();
+            Oleg.FillWithRandom(10);
+            Oleg.ListOutputToTheConsole();
+            Console.WriteLine();
+
+            Oleg.Add(15);
+            Oleg.ListOutputToTheConsole();
+            Console.WriteLine();
+
+            Oleg.AddToTheBeginning(70);
+            Oleg.ListOutputToTheConsole();
+
+            Console.WriteLine();
         }
     }
 }
