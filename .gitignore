@@ -1,0 +1,29 @@
+* .swp
+* . * ~
+project.lock.json
+.DS_Store
+* .pyc
+
+# Код Visual Studio
+.vscode
+
+# Файлы для конкретных пользователей
+* .suo
+* .user
+* .userosscache
+* .sln.docstates
+
+# Результаты сборки
+[ Dd ] ebug /
+[ Dd ] ebugPublic /
+[ Rr ] elease /
+[ Rr ] eleases /
+x64 /
+x86 /
+build /
+bld /
+[ Bb ] в /
+[ Oo ] bj /
+msbuild.log
+msbuild.err
+msbuild.wrn
