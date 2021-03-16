@@ -9,10 +9,38 @@ namespace List
         public int Length { get; private set; }
         private int[] _array;
 
+        public int this[int index]
+        {
+            get
+            { //отбить тут out if range exception
+                return _array[index];
+            }
+            set
+            {
+                _array[index] = value;
+            }
+        }
+
+
         public ArrayList()
         {
-            _array = new int[5];
+            Length = 0;
+            _array = new int[10];
 
+        }
+
+        public ArrayList(int value)
+        {
+            Length = 1;
+            _array = new int[10];
+            _array[0] = value;
+        }
+
+        public ArrayList(int[] value)
+        {
+            Length = value.Length;
+            _array = value;
+            UpSize();
         }
 
         public void Add(int value)
@@ -27,22 +55,50 @@ namespace List
 
         public void AddToTheBeginning(int value)
         {
-            if (Length == _array.Length)
+            while  (Length == _array.Length)
             {
                 UpSize();
             }
-            int[] tmpArray = new int[_array.Length];
-            for (int i = 0; i <= Length; i++)
+            for (int i = Length; i >=0; i--)
             {
-                tmpArray[i + 1] = _array[i];
+                _array[i + 1] = _array[i];
+
             }
-            tmpArray[0] = value;
-            _array = tmpArray;
+            _array[0] = value;
             Length++;
 
 
         }
 
+        public override string ToString()
+        {
+            string tmp = "";
+            for (int i = 0; i < Length; i++)
+            {
+                tmp += _array[i] + " ";
+            }
+            return tmp;
+        }
+        public override bool Equals(object obj)
+        {
+            ArrayList arrayList = (ArrayList)obj;
+            if(Length != arrayList.Length)
+            {
+                return false;
+            }
+            for(int i = 0; i < Length; i++)
+            {
+                if(this._array[i] != arrayList._array[i])
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
 
         public void ListOutputToTheConsole()
         {
