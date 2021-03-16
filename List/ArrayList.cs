@@ -28,20 +28,19 @@ namespace List
             _array = new int[10];
 
         }
-
         public ArrayList(int value)
         {
             Length = 1;
             _array = new int[10];
             _array[0] = value;
         }
-
         public ArrayList(int[] value)
         {
             Length = value.Length;
             _array = value;
             UpSize();
         }
+
 
         public void Add(int value)
         {
@@ -55,7 +54,7 @@ namespace List
 
         public void AddToTheBeginning(int value)
         {
-            while  (Length == _array.Length)
+            if  (Length == _array.Length)
             {
                 UpSize();
             }
@@ -98,15 +97,6 @@ namespace List
         public override int GetHashCode()
         {
             return base.GetHashCode();
-        }
-
-        public void ListOutputToTheConsole()
-        {
-            for(int i =0; i< Length; i++)
-            {
-                Console.Write($"{_array[i]} ");
-            }
-            Console.WriteLine();
         }
 
         public void FillWithRandom(int numberOfElements)
