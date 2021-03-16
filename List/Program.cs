@@ -6,9 +6,9 @@ namespace List
     {
         static void Main(string[] args)
         {
-
-            ArrayList Oleg = new ArrayList();
-            Oleg.FillWithRandom(10);
+            int[] array = new int[] { 1, 2, 3, 4, 9, 10};
+            ArrayList Oleg = new ArrayList(array);
+            //Oleg.FillWithRandom(10);
             Oleg.ListOutputToTheConsole();
             Console.WriteLine();
 
@@ -19,7 +19,7 @@ namespace List
             Oleg.AddToTheBeginning(70);
             Oleg.ListOutputToTheConsole();
 
-            Console.WriteLine();
+            //Console.WriteLine();
         }
     }
 }
