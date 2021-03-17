@@ -12,7 +12,7 @@ namespace List
         public int this[int index]
         {
             get
-            { //отбить тут out if range exception
+            { //отбить тут ArgumentOutOfRangeException
                 return _array[index];
             }
             set
@@ -41,33 +41,53 @@ namespace List
             UpSize();
         }
 
+        public void RemoveValueByIndex(int index)
+        {
+            for (int i = index; i < Length; i++)
+            {
+                _array[i] = _array[i + 1];
+            }
+            Length--;
+        }
 
-        public void Add(int value)
+        public void AddValueByIndex(int value, int index)
         {
             if (Length == _array.Length)
             {
                 UpSize();
             }
-            _array[Length] = value;
-            Length++;
-        }
-
-        public void AddToTheBeginning(int value)
-        {
-            if  (Length == _array.Length)
-            {
-                UpSize();
-            }
-            for (int i = Length; i >=0; i--)
+            for (int i = Length - 1; i >= index; i--)
             {
                 _array[i + 1] = _array[i];
 
             }
-            _array[0] = value;
+            _array[index] = value;
             Length++;
-
-
         }
+
+
+        public void Add(int value)
+        {
+            AddValueByIndex(value, Length);
+        }
+
+        public void AddToTheBeginning(int value)
+        {
+            AddValueByIndex(value, 0);
+        }
+
+
+        public void RemoveValueFromEnd()
+        {
+            RemoveValueByIndex(Length - 1);
+        }
+
+        public void RemoveValueFromBeginning()
+        {
+            RemoveValueByIndex(0);
+        }
+
+
 
         public override string ToString()
         {
@@ -120,5 +140,8 @@ namespace List
             }
             _array = tmpArray;
         }
+
+
+
     }
 }
