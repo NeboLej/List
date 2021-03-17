@@ -49,6 +49,7 @@ namespace List
                 _array[i] = _array[i + 1];
             }
             Length--;
+            DownSize();
         }
         public void AddValueByIndex(int value, int index)
         {
@@ -71,6 +72,7 @@ namespace List
                 _array[i] = _array[i + number];
             }
             Length -= number;
+            DownSize();
         }
 
 
@@ -106,6 +108,7 @@ namespace List
                 _array[i] = _array[i + number];
             }
             Length -= number;
+            DownSize();
         }
 
 
@@ -264,7 +267,6 @@ namespace List
             if(index != -1)
             {
                 RemoveValueByIndex(index);
-
             }
         }
         public void RemoveAllByValue(int value)
@@ -279,16 +281,21 @@ namespace List
             }
         }
 
-        public void FillWithRandom(int numberOfElements)
-        {
 
-            Random random = new Random();
-            for (int i = 0; i < numberOfElements; i++)
+        private void DownSize()
+        {
+            if (Length < (int)(_array.Length/2) - 1)
             {
-                Add(random.Next(0, 101));
+                int newLenght = (int)(_array.Length / 2);
+                int[] tmpArray = new int[newLenght];
+                for (int i = 0; i < newLenght; i++)
+                {
+                    tmpArray[i] = _array[i];
+                }
+                _array = tmpArray;
+                DownSize();
             }
         }
-
         private void UpSize()
         {
             int newLenght = (int)(_array.Length * 1.33d + 1);
