@@ -41,6 +41,7 @@ namespace List
             UpSize();
         }
 
+
         public void RemoveValueByIndex(int index)
         {
             for (int i = index; i < Length; i++)
@@ -97,6 +98,7 @@ namespace List
         }
 
 
+
         public void RemovingValuesFromBeginning(int number)
         {
             RemovingValuesByIndex(0, number);
@@ -112,6 +114,65 @@ namespace List
         }
 
 
+
+
+        public int SearchIndexValue(int value)
+        {
+            for(int i = 0; i< Length; i++)
+            {
+                if (_array[i] == value)
+                {
+                    int index = i;
+                    return index;
+                }
+            }
+            return -1;
+        }
+
+        public int SearchMaximumValue()
+        {
+            int[] index = new int[2];
+            index = SearchIndexAndValueMaximumElements();
+            return index[0];
+        }
+
+        public int SearchMinimumValue()
+        {
+            int[] index = new int[2];
+            index = SearchIndexAndValueMinimumElements();
+            return index[0];
+        }
+
+        public int SearchIndexMinimumValue()
+        {
+
+            int[] index = new int[2];
+            index = SearchIndexAndValueMinimumElements();
+            return index[1];
+        }
+
+        public int SearchIndexMaximumValue()
+        {
+            int[] index = new int[2];
+            index = SearchIndexAndValueMaximumElements();
+            return index[1];
+        }
+
+        
+
+
+
+      
+        public void Revers()
+        {
+            for (int i = 0; i < Length/2; i++)
+            {
+                int tmp = 0;
+                tmp = _array[i];
+                _array[i] = _array[Length - 1 - i];
+                _array[Length - 1 - i] = tmp;
+            }
+        }
 
         public override string ToString()
         {
@@ -143,6 +204,7 @@ namespace List
             return base.GetHashCode();
         }
 
+
         public void FillWithRandom(int numberOfElements)
         {
 
@@ -165,6 +227,35 @@ namespace List
             _array = tmpArray;
         }
 
+        private int[] SearchIndexAndValueMaximumElements()
+        {
+            int[] maxElement = new int[] { _array[0], 0 };
+          
+            for (int i = 1; i < Length; i++)
+            {
+                if (_array[i] > maxElement[0])
+                {
+                    maxElement[0] = _array[i];
+                    maxElement[1] = i;
+                }
+            }
+            return maxElement;
+        }
+
+        private int[] SearchIndexAndValueMinimumElements()
+        {
+            int[] minElement = new int[] { _array[0], 0 };
+          
+            for (int i = 1; i < Length; i++)
+            {
+                if (_array[i] < minElement[0])
+                {
+                    minElement[0] = _array[i];
+                    minElement[1] = i;
+                }
+            }
+            return minElement;
+        }
 
 
     }
