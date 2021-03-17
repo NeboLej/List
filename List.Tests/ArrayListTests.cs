@@ -164,5 +164,52 @@ namespace List.Tests
         }
 
 
+        [TestCase(new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 0, 15, 30, 90, 180, 1200 })]
+        [TestCase(new int[] { -30, -60, -90 }, new int[] { -90, -60, -30 })]
+        public void Test16(int[] actualArray, int[] expectedArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(actualArray);
+            actual.SortAscending();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 1200, 180, 90, 30, 15, 0 })]
+        [TestCase(new int[] { -30, -30, -90 }, new int[] { -30, -30, -90 })]
+        public void Test17(int[] actualArray, int[] expectedArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(actualArray);
+            actual.SortDescending();
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(15, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 180 })]
+        [TestCase(0, new int[] { 30, 0, 90, 1200, 15, 0, 180 }, new int[] {30, 90, 1200, 15, 0, 180 })]
+        [TestCase(0, new int[] { -30, -30, -90 }, new int[] { -30, -30, -90 })]
+        public void Test18(int value, int[] actualArray, int[] expectedArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(actualArray);
+            actual.RemoveTheFirstByValue(value);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(15, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 180 })]
+        [TestCase(0, new int[] { 30, 0, 90, 1200, 15, 0, 180 }, new int[] {30, 90, 1200, 15, 180 })]
+        [TestCase(-30, new int[] { -30, -30, -90 }, new int[] {-90 })]
+        [TestCase(-20, new int[] { -30, -30, -90 }, new int[] { -30, -30, -90 })]
+        public void Test19(int value, int[] actualArray, int[] expectedArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(actualArray);
+            actual.RemoveAllByValue(value);
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+
+
     }
 }

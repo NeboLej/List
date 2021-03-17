@@ -50,7 +50,6 @@ namespace List
             }
             Length--;
         }
-
         public void AddValueByIndex(int value, int index)
         {
             if (Length == _array.Length)
@@ -65,7 +64,6 @@ namespace List
             _array[index] = value;
             Length++;
         }
-
         public void RemovingValuesByIndex(int index, int number)
         {
             for(int i = index; i < Length-number; i++)
@@ -80,7 +78,6 @@ namespace List
         {
             AddValueByIndex(value, Length);
         }
-
         public void AddToTheBeginning(int value)
         {
             AddValueByIndex(value, 0);
@@ -91,7 +88,6 @@ namespace List
         {
             RemoveValueByIndex(Length - 1);
         }
-
         public void RemoveValueFromBeginning()
         {
             RemoveValueByIndex(0);
@@ -103,7 +99,6 @@ namespace List
         {
             RemovingValuesByIndex(0, number);
         }
-
         public void RemovingValuesFromEnd(int number)
         {
             for(int i = Length-number; i<Length-number; i++)
@@ -112,8 +107,6 @@ namespace List
             }
             Length -= number;
         }
-
-
 
 
         public int SearchIndexValue(int value)
@@ -128,21 +121,18 @@ namespace List
             }
             return -1;
         }
-
         public int SearchMaximumValue()
         {
             int[] index = new int[2];
             index = SearchIndexAndValueMaximumElements();
             return index[0];
         }
-
         public int SearchMinimumValue()
         {
             int[] index = new int[2];
             index = SearchIndexAndValueMinimumElements();
             return index[0];
         }
-
         public int SearchIndexMinimumValue()
         {
 
@@ -150,7 +140,6 @@ namespace List
             index = SearchIndexAndValueMinimumElements();
             return index[1];
         }
-
         public int SearchIndexMaximumValue()
         {
             int[] index = new int[2];
@@ -159,10 +148,6 @@ namespace List
         }
 
         
-
-
-
-      
         public void Revers()
         {
             for (int i = 0; i < Length/2; i++)
@@ -173,6 +158,8 @@ namespace List
                 _array[Length - 1 - i] = tmp;
             }
         }
+
+
 
         public override string ToString()
         {
@@ -204,6 +191,65 @@ namespace List
             return base.GetHashCode();
         }
 
+
+        public void SortAscending()
+        {
+
+            for (int i = 0; i < Length - 1; i++)
+            {
+                int min = i;
+                for (int j = i + 1; j < Length; j++)
+                {
+                    if (_array[j] < _array[min])
+                    {
+                        min = j;
+                    }
+                }
+                int tmp = _array[i];
+                _array[i] = _array[min];
+                _array[min] = tmp;
+            }
+        }
+        public void SortDescending()
+        {
+
+            for (int i = 0; i < Length - 1; i++)
+            {
+                int max = i;
+                for (int j = i + 1; j < Length; j++)
+                {
+                    if (_array[j] > _array[max])
+                    {
+                        max = j;
+                    }
+                }
+                int tmp = _array[i];
+                _array[i] = _array[max];
+                _array[max] = tmp;
+            }
+        }
+
+
+        public void RemoveTheFirstByValue(int value)
+        {
+            int index = SearchIndexValue(value);
+            if(index != -1)
+            {
+                RemoveValueByIndex(index);
+
+            }
+        }
+        public void RemoveAllByValue(int value)
+        {
+            for(int i= 0; i<Length-1; i++)
+            {
+                if (_array[i] == value)
+                {
+                    RemoveValueByIndex(i);
+                    i--;
+                }
+            }
+        }
 
         public void FillWithRandom(int numberOfElements)
         {
