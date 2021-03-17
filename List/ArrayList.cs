@@ -229,6 +229,34 @@ namespace List
             }
         }
 
+        public void AddArrayByIndex(ArrayList arrayList, int index)
+        {
+            while (_array.Length <= Length + arrayList.Length)
+            {
+                UpSize();
+            }
+
+            for (int i = Length - 1; i >= index; i--)
+            {
+                _array[i + arrayList.Length] = _array[i];
+            }
+            int j = 0;
+            for(int i = index; i<index+arrayList.Length; i++)
+            {
+                _array[i] = arrayList[j];
+                j++;
+            }
+            Length += arrayList.Length;
+        }
+        public void AddArray(ArrayList arrayList)
+        {
+            AddArrayByIndex(arrayList, Length);
+        }
+        public void AddArrayFromBiginning(ArrayList arrayList)
+        {
+            AddArrayByIndex(arrayList, 0);
+        }
+
 
         public void RemoveTheFirstByValue(int value)
         {

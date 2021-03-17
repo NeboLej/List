@@ -207,6 +207,44 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [TestCase(1, new int[] {15, 180}, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 15, 180, 0, 90, 1200, 15, 180 })]
+        [TestCase(3, new int[] {777, 777, 777 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 777, 777, 777, 1200, 15, 180 })]
+        [TestCase(0, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180, 30, 0, 90, 1200, 15, 180 })]
+        public void Test20(int index, int[] arrayList, int[] actualArray, int[] expectedArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(actualArray);
+            ArrayList list = new ArrayList(arrayList);
+            actual.AddArrayByIndex(list, index);
+            Assert.AreEqual(expected, actual);
+        }
+
+
+        [TestCase(new int[] {15, 180}, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180, 15, 180 })]
+        [TestCase(new int[] {777, 777, 777 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180, 777, 777, 777 })]
+        [TestCase(new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180, 30, 0, 90, 1200, 15, 180 })]
+        public void Test21(int[] arrayList, int[] actualArray, int[] expectedArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(actualArray);
+            ArrayList list = new ArrayList(arrayList);
+            actual.AddArray(list);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(new int[] {15, 180}, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 15, 180, 30, 0, 90, 1200, 15, 180 })]
+        [TestCase(new int[] {777, 777, 777 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 777, 777, 777 , 30, 0, 90, 1200, 15, 180 })]
+        [TestCase(new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180 , 30, 0, 90, 1200, 15, 180 })]
+        public void Test22(int[] arrayList, int[] actualArray, int[] expectedArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(actualArray);
+            ArrayList list = new ArrayList(arrayList);
+            actual.AddArrayFromBiginning(list);
+            Assert.AreEqual(expected, actual);
+        }
+
+
 
 
 
