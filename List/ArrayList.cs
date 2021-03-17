@@ -65,6 +65,15 @@ namespace List
             Length++;
         }
 
+        public void RemovingValuesByIndex(int index, int number)
+        {
+            for(int i = index; i < Length-number; i++)
+            {
+                _array[i] = _array[i + number];
+            }
+            Length -= number;
+        }
+
 
         public void Add(int value)
         {
@@ -85,6 +94,21 @@ namespace List
         public void RemoveValueFromBeginning()
         {
             RemoveValueByIndex(0);
+        }
+
+
+        public void RemovingValuesFromBeginning(int number)
+        {
+            RemovingValuesByIndex(0, number);
+        }
+
+        public void RemovingValuesFromEnd(int number)
+        {
+            for(int i = Length-number; i<Length-number; i++)
+            {
+                _array[i] = _array[i + number];
+            }
+            Length -= number;
         }
 
 

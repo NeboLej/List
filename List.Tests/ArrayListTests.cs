@@ -8,7 +8,7 @@ namespace List.Tests
 {
     class ArrayListTests
     {
-        [TestCase(15, new int[] { 30, 60, 90, 120, 150, 180, 15})]
+        [TestCase(15, new int[] { 30, 60, 90, 120, 150, 180, 15 })]
         public void Test1(int a, int[] expectedArray)
         {
             ArrayList expected = new ArrayList(expectedArray);
@@ -17,7 +17,7 @@ namespace List.Tests
             Assert.AreEqual(expected, actual);
         }
 
-        [TestCase(15, new int[] { 15, 30, 60, 90, 120, 150, 180})]
+        [TestCase(15, new int[] { 15, 30, 60, 90, 120, 150, 180 })]
         public void Test2(int a, int[] expectedArray)
         {
             ArrayList expected = new ArrayList(expectedArray);
@@ -67,11 +67,33 @@ namespace List.Tests
         }
 
 
+        [TestCase(2, new int[] { 30, 60, 90, 120 })]
+        public void Test7(int n, int[] expectedArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(new int[] { 30, 60, 90, 120, 150, 180 });
+            actual.RemovingValuesFromEnd(n);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(3, new int[] { 120, 150, 180 })]
+        public void Test8(int n, int[] expectedArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(new int[] { 30, 60, 90, 120, 150, 180 });
+            actual.RemovingValuesFromBeginning(n);
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestCase(3 , 3 , new int[] { 30, 60, 90 })]
+        public void Test9(int index, int number, int[] expectedArray)
+        {
+            ArrayList expected = new ArrayList(expectedArray);
+            ArrayList actual = new ArrayList(new int[] { 30, 60, 90, 120, 150, 180 });
+            actual.RemovingValuesByIndex(index, number);
+            Assert.AreEqual(expected, actual);
 
 
-
-
+        }
     }
-
-
 }
