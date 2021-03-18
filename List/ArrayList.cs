@@ -12,11 +12,19 @@ namespace List
         public int this[int index]
         {
             get
-            { //отбить тут ArgumentOutOfRangeException
+            { //отбить тут indexOutOfRangeException
+                if (index > Length || index < 0)
+                {
+                    throw new IndexOutOfRangeException("Неверный индекс элемента");
+                }
                 return _array[index];
             }
             set
             {
+                if (index > Length || index < 0)
+                {
+                    throw new IndexOutOfRangeException("Неверный индекс элемента");
+                }
                 _array[index] = value;
             }
         }
@@ -44,6 +52,11 @@ namespace List
 
         public void RemoveValueByIndex(int index)
         {
+            if (index > Length - 1 || index < 0)
+            {
+                throw new IndexOutOfRangeException("Неверный индекс элемента");
+            }
+
             for (int i = index; i < Length; i++)
             {
                 _array[i] = _array[i + 1];
@@ -53,6 +66,11 @@ namespace List
         }
         public void AddValueByIndex(int value, int index)
         {
+            if (index > Length || index < 0)
+            {
+                throw new IndexOutOfRangeException("Неверный индекс элемента");
+            }
+
             if (Length == _array.Length)
             {
                 UpSize();
@@ -67,7 +85,22 @@ namespace List
         }
         public void RemovingValuesByIndex(int index, int number)
         {
-            for(int i = index; i < Length-number; i++)
+            if (index > Length - 1 || index < 0)
+            {
+                throw new IndexOutOfRangeException("Неверный индекс элемента");
+            }
+
+            if (index + number > Length)
+            {
+                throw new ArgumentOutOfRangeException("Ваш список меньше количества удаляемых элементов");
+            }
+
+            if (number <= 0)
+            {
+                throw new ArgumentOutOfRangeException("колличество удаляемых элементов должно быть больше 0");
+            }
+
+            for (int i = index; i < Length - number; i++)
             {
                 _array[i] = _array[i + number];
             }
@@ -88,7 +121,9 @@ namespace List
 
         public void RemoveValueFromEnd()
         {
-            RemoveValueByIndex(Length - 1);
+
+            Length--;
+            DownSize();
         }
         public void RemoveValueFromBeginning()
         {
@@ -103,10 +138,15 @@ namespace List
         }
         public void RemovingValuesFromEnd(int number)
         {
-            for(int i = Length-number; i<Length-number; i++)
+            if (number > Length)
             {
-                _array[i] = _array[i + number];
+                throw new ArgumentOutOfRangeException("Ваш список меньше количества удаляемых элементов");
             }
+            if (number <= 0)
+            {
+                throw new ArgumentOutOfRangeException("колличество удаляемых элементов должно быть больше 0");
+            }
+
             Length -= number;
             DownSize();
         }
@@ -114,7 +154,7 @@ namespace List
 
         public int SearchIndexValue(int value)
         {
-            for(int i = 0; i< Length; i++)
+            for (int i = 0; i < Length; i++)
             {
                 if (_array[i] == value)
                 {
@@ -150,10 +190,10 @@ namespace List
             return index[1];
         }
 
-        
+
         public void Revers()
         {
-            for (int i = 0; i < Length/2; i++)
+            for (int i = 0; i < Length / 2; i++)
             {
                 int tmp = 0;
                 tmp = _array[i];
@@ -161,7 +201,6 @@ namespace List
                 _array[Length - 1 - i] = tmp;
             }
         }
-
 
 
         public override string ToString()
@@ -176,13 +215,13 @@ namespace List
         public override bool Equals(object obj)
         {
             ArrayList arrayList = (ArrayList)obj;
-            if(Length != arrayList.Length)
+            if (Length != arrayList.Length)
             {
                 return false;
             }
-            for(int i = 0; i < Length; i++)
+            for (int i = 0; i < Length; i++)
             {
-                if(this._array[i] != arrayList._array[i])
+                if (this._array[i] != arrayList._array[i])
                 {
                     return false;
                 }
@@ -234,6 +273,11 @@ namespace List
 
         public void AddArrayByIndex(ArrayList arrayList, int index)
         {
+            if (index > Length || index < 0)
+            {
+                throw new IndexOutOfRangeException("Неверный индекс элемента");
+            }
+
             while (_array.Length <= Length + arrayList.Length)
             {
                 UpSize();
@@ -244,7 +288,7 @@ namespace List
                 _array[i + arrayList.Length] = _array[i];
             }
             int j = 0;
-            for(int i = index; i<index+arrayList.Length; i++)
+            for (int i = index; i < index + arrayList.Length; i++)
             {
                 _array[i] = arrayList[j];
                 j++;
@@ -264,14 +308,14 @@ namespace List
         public void RemoveTheFirstByValue(int value)
         {
             int index = SearchIndexValue(value);
-            if(index != -1)
+            if (index != -1)
             {
                 RemoveValueByIndex(index);
             }
         }
         public void RemoveAllByValue(int value)
         {
-            for(int i= 0; i<Length-1; i++)
+            for (int i = 0; i < Length - 1; i++)
             {
                 if (_array[i] == value)
                 {
@@ -284,9 +328,9 @@ namespace List
 
         private void DownSize()
         {
-            if (Length < (int)(_array.Length/2) - 1)
+            if (Length < (int)(_array.Length / 2) - 1)
             {
-                int newLenght = (int)(_array.Length / 2);
+                int newLenght = (int)(_array.Length / 3);
                 int[] tmpArray = new int[newLenght];
                 for (int i = 0; i < newLenght; i++)
                 {
@@ -311,7 +355,7 @@ namespace List
         private int[] SearchIndexAndValueMaximumElements()
         {
             int[] maxElement = new int[] { _array[0], 0 };
-          
+
             for (int i = 1; i < Length; i++)
             {
                 if (_array[i] > maxElement[0])
@@ -326,7 +370,7 @@ namespace List
         private int[] SearchIndexAndValueMinimumElements()
         {
             int[] minElement = new int[] { _array[0], 0 };
-          
+
             for (int i = 1; i < Length; i++)
             {
                 if (_array[i] < minElement[0])
