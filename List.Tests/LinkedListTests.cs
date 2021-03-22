@@ -104,15 +104,15 @@ namespace List.Tests
         //}
 
 
-        //[TestCase(90, new int[] { 30, 60, 90, 120, 150, 180 }, 2)]
-        //[TestCase(180, new int[] { 30, 60, 90, 120, 150, 180 }, 5)]
-        //[TestCase(18, new int[] { 30, 60, 90, 120, 150, 180 }, -1)]
-        //public void Test10(int value, int[] actualArray, int expected)
-        //{
-        //    ArrayList actualArrayList = new ArrayList(actualArray);
-        //    int actual = actualArrayList.SearchIndexValue(value);
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestCase(90, new int[] { 30, 60, 90, 120, 150, 180 }, 2)]
+        [TestCase(180, new int[] { 30, 60, 90, 120, 150, 180 }, 5)]
+        [TestCase(18, new int[] { 30, 60, 90, 120, 150, 180 }, -1)]
+        public void Test10(int value, int[] actualArray, int expected)
+        {
+            LinkedList actualArrayList = new LinkedList(actualArray);
+            int actual = actualArrayList.SearchIndexValue(value);
+            Assert.AreEqual(expected, actual);
+        }
 
         //[TestCase(new int[] { 10, 30, 60, 90, 120, 150, 180 }, new int[] { 180, 150, 120, 90, 60, 30, 10 })]
         //[TestCase(new int[] { 15, 30, 60 }, new int[] { 60, 30, 15 })]
@@ -124,44 +124,44 @@ namespace List.Tests
         //    Assert.AreEqual(expected, actual);
         //}
 
-        //[TestCase(new int[] { 10, -1, 30, 60, 190, 90, 120, 150, 180 }, 190)]
-        //[TestCase(new int[] { 10, 30, 60, 7, 90 }, 90)]
-        //public void Test12(int[] actualArray, int expected)
-        //{
-        //    ArrayList actualArrayList = new ArrayList(actualArray);
-        //    int actual = actualArrayList.SearchMaximumValue();
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestCase(new int[] { 10, -1, 30, 60, 190, 90, 120, 150, 180 }, 190)]
+        [TestCase(new int[] { 10, 30, 60, 7, 90 }, 90)]
+        public void Test12(int[] actualArray, int expected)
+        {
+            LinkedList actualArrayList = new LinkedList(actualArray);
+            int actual = actualArrayList.SearchMaximumValue();
+            Assert.AreEqual(expected, actual);
+        }
 
 
-        //[TestCase(new int[] { 10, -1, 30, 60, 190, 90, 120, 150, 180 }, -1)]
-        //[TestCase(new int[] { 10, 30, 60, 7, 90 }, 7)]
-        //public void Test13(int[] actualArray, int expected)
-        //{
-        //    ArrayList actualArrayList = new ArrayList(actualArray);
-        //    int actual = actualArrayList.SearchMinimumValue();
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestCase(new int[] { 10, -1, 30, 60, 190, 90, 120, 150, 180 }, -1)]
+        [TestCase(new int[] { 10, 30, 60, 7, 90 }, 7)]
+        public void Test13(int[] actualArray, int expected)
+        {
+            LinkedList actualArrayList = new LinkedList(actualArray);
+            int actual = actualArrayList.SearchMinimumValue();
+            Assert.AreEqual(expected, actual);
+        }
 
 
-        //[TestCase(new int[] { 10, -1, 30, 60, 190, 90, 120, 150, 180 }, 4)]
-        //[TestCase(new int[] { 10, 30, 60, 7, -90, 90 }, 5)]
-        //public void Test14(int[] actualArray, int expected)
-        //{
-        //    ArrayList actualArrayList = new ArrayList(actualArray);
-        //    int actual = actualArrayList.SearchIndexMaximumValue();
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestCase(new int[] { 10, -1, 30, 60, 190, 90, 120, 150, 180 }, 4)]
+        [TestCase(new int[] { 10, 30, 60, 7, -90, 90 }, 5)]
+        public void Test14(int[] actualArray, int expected)
+        {
+            LinkedList actualArrayList = new LinkedList (actualArray);
+            int actual = actualArrayList.SearchIndexMaximumValue();
+            Assert.AreEqual(expected, actual);
+        }
 
 
-        //[TestCase(new int[] { 10, -1, 30, 60, 190, 90, 120, 150, 180 }, 1)]
-        //[TestCase(new int[] { 10, 30, 60, 7, 90 }, 3)]
-        //public void Test15(int[] actualArray, int expected)
-        //{
-        //    ArrayList actualArrayList = new ArrayList(actualArray);
-        //    int actual = actualArrayList.SearchIndexMinimumValue();
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestCase(new int[] { 10, -1, 30, 60, 190, 90, 120, 150, 180 }, 1)]
+        [TestCase(new int[] { 10, 30, 60, 7, 90 }, 3)]
+        public void Test15(int[] actualArray, int expected)
+        {
+            LinkedList actualArrayList = new LinkedList(actualArray);
+            int actual = actualArrayList.SearchIndexMinimumValue();
+            Assert.AreEqual(expected, actual);
+        }
 
 
         //[TestCase(new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 0, 15, 30, 90, 180, 1200 })]

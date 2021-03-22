@@ -95,6 +95,7 @@ namespace List
         {
             RemoveByIndex(Length-1);
         }
+       
 
 
         public void AddByIndex(int value, int index)
@@ -110,7 +111,7 @@ namespace List
             current.Next.Next = tmp;
             Length++;
         }
-
+        
 
         public void AddFirst(int value)
         {
@@ -119,6 +120,47 @@ namespace List
             _root = new Node(value);
             _root.Next = current;
         }
+
+        public int SearchIndexValue(int value)
+        {
+            Node current = _root;
+            for(int i = 0; i < Length; i++)
+            {
+                if(current.Value == value)
+                {
+                    return i;
+                }
+                current = current.Next;
+            }
+            return -1;
+        }
+        public int SearchIndexMaximumValue()
+        {
+            int[] values = new int[2];
+            values = SearchIndexAndValueMaximumElement();
+            return values[0];
+        }
+        public int SearchMaximumValue()
+        {
+            int[] values = new int[2];
+            values = SearchIndexAndValueMaximumElement();
+            return values[1];
+        }
+        public int SearchIndexMinimumValue()
+        {
+            int[] values = new int[2];
+            values = SearchIndexAndValueMinimumElement();
+            return values[0];
+
+        }
+        public int SearchMinimumValue()
+        {
+            int[] values = new int[2];
+            values = SearchIndexAndValueMinimumElement();
+            return values[1];
+
+        }
+
 
 
         public override bool Equals(object obj)
@@ -170,6 +212,41 @@ namespace List
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        private int[] SearchIndexAndValueMaximumElement()
+        {
+            int indexMaxElement = 0;
+            int maxElement = _root.Value;
+            Node current = _root;
+            for(int i =0; i<Length; i++)
+            {
+                if (current.Value > maxElement)
+                {
+                    maxElement = current.Value;
+                    indexMaxElement = i;
+                }
+                current = current.Next;
+            }
+            return  new int[] { indexMaxElement, maxElement };
+
+        }
+        private int[] SearchIndexAndValueMinimumElement()
+        {
+            int indexMinElement = 0;
+            int minElement = _root.Value;
+            Node current = _root;
+            for(int i =0; i<Length; i++)
+            {
+                if (current.Value < minElement)
+                {
+                    minElement = current.Value;
+                    indexMinElement = i;
+                }
+                current = current.Next;
+            }
+            return  new int[] { indexMinElement, minElement };
+
         }
     }
 }
