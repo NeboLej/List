@@ -35,7 +35,7 @@ namespace List
 
         public LinkedList(int value)
         {
-            Length = 1;
+            //Length = 1;
             _root = new Node(value);
             _tail = _root;
         }
@@ -67,6 +67,47 @@ namespace List
             _tail = _tail.Next;
         }
 
+        
+        public void RemoveByIndex(int index)
+        {
+            Node current = _root;
+            for (int i = 1; i <index; i++)
+            {
+                current = current.Next;
+            }
+            current.Next = current.Next.Next;
+            Length--;
+
+        }
+        public void RemoveFirst()
+        {
+            _root = _root.Next;
+            Length--;
+        }
+
+
+        public void AddByIndex(int value, int index)
+        {
+            Node current = _root;
+           
+            for (int i = 1; i < index; i++)
+            {
+                current = current.Next;
+            }
+            Node tmp = current.Next;
+            current.Next = new Node(value);
+            current.Next.Next = tmp;
+            Length++;
+        }
+
+
+        public void AddFirst(int value)
+        {
+            Length++;
+            Node current = _root;
+            _root = new Node(value);
+            _root.Next = current;
+        }
 
 
         public override bool Equals(object obj)
