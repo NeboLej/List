@@ -35,7 +35,7 @@ namespace List
 
         public LinkedList(int value)
         {
-            //Length = 1;
+            Length = 1;
             _root = new Node(value);
             _tail = _root;
         }
@@ -43,6 +43,7 @@ namespace List
         {
             if(values.Length != 0)
             {
+                Length = 1;
                 _root = new Node(values[0]);
                 _tail = _root;
 
@@ -74,8 +75,14 @@ namespace List
             for (int i = 1; i <index; i++)
             {
                 current = current.Next;
+                
             }
             current.Next = current.Next.Next;
+            if (index == Length - 1)
+            {
+                _tail.Next = current;
+                _tail = _tail.Next;
+            }
             Length--;
 
         }
@@ -83,6 +90,10 @@ namespace List
         {
             _root = _root.Next;
             Length--;
+        }
+        public void RemoveByEnd()
+        {
+            RemoveByIndex(Length-1);
         }
 
 

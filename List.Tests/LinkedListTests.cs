@@ -40,15 +40,15 @@ namespace List.Tests
         }
 
 
-        //[TestCase(new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90, 120, 150 })]
-        //[TestCase(new int[] { 30, 60, 90 }, new int[] { 30, 60 })]
-        //public void Test4(int[] actualArray, int[] expectedArray)
-        //{
-        //    ArrayList expected = new ArrayList(expectedArray);
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    actual.RemoveValueFromEnd();
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestCase(new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90, 120, 150 })]
+        [TestCase(new int[] { 30, 60, 90 }, new int[] { 30, 60 })]
+        public void Test4(int[] actualArray, int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+            LinkedList actual = new LinkedList(actualArray);
+            actual.RemoveByEnd();
+            Assert.AreEqual(expected, actual);
+        }
 
 
         [TestCase(new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 60, 90, 120, 150, 180 })]
@@ -62,7 +62,7 @@ namespace List.Tests
         }
 
 
-        [TestCase(2, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 120, 150, 180 })]
+        [TestCase(5, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90, 120, 150 })]
         [TestCase(1, new int[] { 30, 60, 90 }, new int[] { 30, 90 })]
         public void Test6(int index, int[] actualArray, int[] expectedArray)
         {
