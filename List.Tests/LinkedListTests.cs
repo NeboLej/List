@@ -73,35 +73,40 @@ namespace List.Tests
         }
 
 
-        //[TestCase(2, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90, 120 })]
-        //[TestCase(3, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90 })]
-        //public void Test7(int n, int[] actualArray, int[] expectedArray)
-        //{
-        //    ArrayList expected = new ArrayList(expectedArray);
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    actual.RemovingValuesFromEnd(n);
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestCase(2, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90, 120 })]
+        [TestCase(3, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90 })]
+        public void Test7(int n, int[] actualArray, int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+            LinkedList actual = new LinkedList(actualArray);
+            actual.RemoveValuesFromEnd(n);
+            Assert.AreEqual(expected, actual);
+        }
 
-        //[TestCase(3, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 120, 150, 180 })]
-        //[TestCase(2, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 90, 120, 150, 180 })]
-        //public void Test8(int n, int[] actualArray, int[] expectedArray)
-        //{
-        //    ArrayList expected = new ArrayList(expectedArray);
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    actual.RemovingValuesFromBeginning(n);
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestCase(3, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 120, 150, 180 })]
+        [TestCase(2, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 90, 120, 150, 180 })]
+        public void Test8(int n, int[] actualArray, int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+            LinkedList actual = new LinkedList(actualArray);
+            actual.RemoveValuesFromBeginning(n);
+            Assert.AreEqual(expected, actual);
+        }
 
-        //[TestCase(3, 3, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90 })]
-        //[TestCase(2, 2, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 150, 180 })]
-        //public void Test9(int index, int number, int[] actualArray, int[] expectedArray)
-        //{
-        //    ArrayList expected = new ArrayList(expectedArray);
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    actual.RemovingValuesByIndex(index, number);
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestCase(3, 3, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90 })]
+        [TestCase(2, 2, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 150, 180 })]
+        [TestCase(0, 2, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 90, 120, 150, 180 })]
+        [TestCase(1, 1, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 90, 120, 150, 180 })]
+        [TestCase(4, 2, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90, 120,})]
+        [TestCase(1, 5, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30})]
+        [TestCase(0, 6, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { })]
+        public void Test9(int index, int number, int[] actualArray, int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+            LinkedList actual = new LinkedList(actualArray);
+            actual.RemoveValuesByIndex(index, number);
+            Assert.AreEqual(expected, actual);
+        }
 
 
         [TestCase(90, new int[] { 30, 60, 90, 120, 150, 180 }, 2)]

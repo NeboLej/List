@@ -111,7 +111,48 @@ namespace List
             current.Next.Next = tmp;
             Length++;
         }
-        
+
+
+        public void RemoveValuesByIndex(int index, int number)
+        {
+            if(index != 0)
+            {
+                Node current = _root;
+                for(int i = 1; i < index; i++)
+                {
+                    current = current.Next;
+                }
+                Node tmp = current;
+                for(int i = 0; i<number; i++)
+                {
+                    current = current.Next;
+                }
+                tmp.Next = current.Next;
+                Length -= number;
+            }
+            else
+            {
+                RemoveValuesFromBeginning(number);
+            }
+        }
+        public void RemoveValuesFromBeginning(int number)
+        {
+            for(int i = 0; i < number; i++)
+            {
+                _root = _root.Next;
+                Length--;
+            }
+        }
+        public void RemoveValuesFromEnd(int number)
+        {
+            int index = Length - number;
+            RemoveValuesByIndex(index, number);
+            //_tail.Next = new Node(value);
+            //_tail = _tail.Next;
+
+
+        }
+
 
         public void AddFirst(int value)
         {
