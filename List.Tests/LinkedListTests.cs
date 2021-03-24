@@ -64,6 +64,7 @@ namespace List.Tests
 
         [TestCase(5, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90, 120, 150 })]
         [TestCase(1, new int[] { 30, 60, 90 }, new int[] { 30, 90 })]
+        [TestCase(0, new int[] { 30, 60, 90 }, new int[] { 60, 90 })]
         public void Test6(int index, int[] actualArray, int[] expectedArray)
         {
             LinkedList expected = new LinkedList(expectedArray);
@@ -75,6 +76,7 @@ namespace List.Tests
 
         [TestCase(2, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90, 120 })]
         [TestCase(3, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { 30, 60, 90 })]
+        [TestCase(6, new int[] { 30, 60, 90, 120, 150, 180 }, new int[] { })]
         public void Test7(int n, int[] actualArray, int[] expectedArray)
         {
             LinkedList expected = new LinkedList(expectedArray);
@@ -169,25 +171,25 @@ namespace List.Tests
         }
 
 
-        //[TestCase(new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 0, 15, 30, 90, 180, 1200 })]
-        //[TestCase(new int[] { -30, -60, -90 }, new int[] { -90, -60, -30 })]
-        //public void Test16(int[] actualArray, int[] expectedArray)
-        //{
-        //    ArrayList expected = new ArrayList(expectedArray);
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    actual.SortAscending();
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestCase(new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 0, 15, 30, 90, 180, 1200 })]
+        [TestCase(new int[] { -30, -60, -90 }, new int[] { -90, -60, -30 })]
+        public void Test16(int[] actualArray, int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+            LinkedList actual = new LinkedList(actualArray);
+            actual.SortAscending();
+            Assert.AreEqual(expected, actual);
+        }
 
-        //[TestCase(new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 1200, 180, 90, 30, 15, 0 })]
-        //[TestCase(new int[] { -30, -30, -90 }, new int[] { -30, -30, -90 })]
-        //public void Test17(int[] actualArray, int[] expectedArray)
-        //{
-        //    ArrayList expected = new ArrayList(expectedArray);
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    actual.SortDescending();
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestCase(new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 1200, 180, 90, 30, 15, 0 })]
+        [TestCase(new int[] { -30, -30, -90 }, new int[] { -30, -30, -90 })]
+        public void Test17(int[] actualArray, int[] expectedArray)
+        {
+            LinkedList expected = new LinkedList(expectedArray);
+            LinkedList actual = new LinkedList(actualArray);
+            actual.SortDescending();
+            Assert.AreEqual(expected, actual);
+        }
 
         //[TestCase(15, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 180 })]
         //[TestCase(0, new int[] { 30, 0, 90, 1200, 15, 0, 180 }, new int[] { 30, 90, 1200, 15, 0, 180 })]

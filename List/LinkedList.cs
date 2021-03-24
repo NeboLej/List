@@ -58,6 +58,13 @@ namespace List
                 _tail = null;
             }
         }
+        public LinkedList()
+        {
+            Length = 0;
+            _root = null;
+            _tail = null;
+
+        }
 
 
 
@@ -72,18 +79,25 @@ namespace List
         public void RemoveByIndex(int index)
         {
             Node current = _root;
-            for (int i = 1; i <index; i++)
+            //if (index == Length - 1)
+            //{
+            //    _tail.Next = current;
+            //    _tail = _tail.Next;
+            //}
+            if( index == 0)
             {
+                RemoveFirst();
+            }
+            else 
+            {
+
+                for (int i = 1; i < index; i++)
+                {
                 current = current.Next;
-                
+                }
+                current.Next = current.Next.Next;
+                Length--;
             }
-            current.Next = current.Next.Next;
-            if (index == Length - 1)
-            {
-                _tail.Next = current;
-                _tail = _tail.Next;
-            }
-            Length--;
 
         }
         public void RemoveFirst()
@@ -94,8 +108,11 @@ namespace List
         public void RemoveByEnd()
         {
             RemoveByIndex(Length-1);
+             Node current = _root;
+             _tail.Next = current;
+             _tail = _tail.Next;
         }
-       
+
 
 
         public void AddByIndex(int value, int index)
@@ -115,7 +132,7 @@ namespace List
 
         public void RemoveValuesByIndex(int index, int number)
         {
-            if(index != 0)
+            if (index != 0)
             {
                 Node current = _root;
                 for(int i = 1; i < index; i++)
@@ -137,16 +154,31 @@ namespace List
         }
         public void RemoveValuesFromBeginning(int number)
         {
-            for(int i = 0; i < number; i++)
+            if (number != Length)
             {
-                _root = _root.Next;
-                Length--;
+                for (int i = 0; i < number; i++)
+                {
+                    _root = _root.Next;
+                    Length--;
+                }
             }
+            else
+            {
+                Empty();
+            }
+
         }
         public void RemoveValuesFromEnd(int number)
         {
-            int index = Length - number;
-            RemoveValuesByIndex(index, number);
+            if (Length != number)
+            {
+                int index = Length - number;
+                RemoveValuesByIndex(index, number);
+            }
+            else
+            {
+                Empty();
+            }
             //_tail.Next = new Node(value);
             //_tail = _tail.Next;
 
@@ -157,6 +189,9 @@ namespace List
         public void AddFirst(int value)
         {
             Length++;
+            //Node tmp = new Node(value);
+            //tmp.Next = _root;
+            //_root = tmp;
             Node current = _root;
             _root = new Node(value);
             _root.Next = current;
@@ -203,6 +238,39 @@ namespace List
         }
 
 
+        public void SortAscending()
+        {
+            int[] firstElement = new int[2];
+            firstElement = SearchIndexAndValueMinimumElement();
+            RemoveByIndex(firstElement[0]);
+            LinkedList tmpList = new LinkedList(firstElement[1]);
+
+            while(Length!=0)
+            {
+                int[] minimum = SearchIndexAndValueMinimumElement();
+                RemoveByIndex(minimum[0]);
+                tmpList.Add(minimum[1]);
+            }
+            this._root = tmpList._root;
+            Length = tmpList.Length;
+        }
+
+        public void SortDescending()
+        {
+            int[] firstElement = new int[2];
+            firstElement = SearchIndexAndValueMaximumElement();
+            RemoveByIndex(firstElement[0]);
+            LinkedList tmpList = new LinkedList(firstElement[1]);
+
+            while(Length!=0)
+            {
+                int[] maximum = SearchIndexAndValueMaximumElement();
+                RemoveByIndex(maximum[0]);
+                tmpList.Add(maximum[1]);
+            }
+            this._root = tmpList._root;
+            Length = tmpList.Length;
+        }
 
         public override bool Equals(object obj)
         {
@@ -214,6 +282,10 @@ namespace List
 
             Node currentThis = this._root;
             Node currentList = list._root;
+            if (currentList is null && currentThis is null)
+            {
+                return true;
+            }
 
             while (!(currentThis.Next is null))
             {
@@ -288,6 +360,13 @@ namespace List
             }
             return  new int[] { indexMinElement, minElement };
 
+        }
+
+        private void Empty()
+        {
+            Length = 0;
+            _root = null;
+            _tail = null;
         }
     }
 }
