@@ -366,7 +366,6 @@ namespace List
             }
             return maxElement;
         }
-
         private int[] SearchIndexAndValueMinimumElements()
         {
             int[] minElement = new int[] { _array[0], 0 };

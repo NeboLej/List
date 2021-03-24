@@ -113,6 +113,25 @@ namespace List
              _tail = _tail.Next;
         }
 
+        public void RemoveTheFirstByValue(int value)
+        {
+
+            int index = SearchIndexValue(value);
+            if(index !=-1)
+            {
+                RemoveByIndex(index);
+            }
+        }
+        public void RemoveAllByValue(int value)
+        {
+            int index = SearchIndexValue(value);
+            while(index != -1)
+            {
+                RemoveByIndex(index);
+                index = SearchIndexValue(value);
+            }
+        }
+
 
 
         public void AddByIndex(int value, int index)
@@ -185,6 +204,38 @@ namespace List
 
         }
 
+        public void Revers()
+        {
+            LinkedList tmp = new LinkedList(_tail.Value);
+            Node current = _root;
+
+            for (int i = 1; i <=Length-1; i++)
+            {
+                current = _root;
+                for (int j = 1; j<=Length-1-i; j++)
+                {
+                    current = current.Next;
+                }
+                tmp.Add(current.Value);
+            }
+            _root = tmp._root;
+        }
+
+        public void Reverse()
+        {
+            Node prev = _root;
+            Node next = null;
+            _tail = _root;
+            while (prev != null)
+            {
+                Node tmp = prev.Next;
+                prev.Next = next;
+                next = prev;
+                prev = tmp;
+            }
+            _root = next;
+        }
+
 
         public void AddFirst(int value)
         {
@@ -237,6 +288,51 @@ namespace List
 
         }
 
+
+        public void AddLinkedListByIndex(LinkedList list, int index)
+        {
+            if(index != 0)
+            {
+
+                Node currentThis = _root;
+                for(int i = 1; i < index; i++)
+                {
+                    currentThis = currentThis.Next;
+                }
+                Node tmp1 = currentThis.Next;
+                Node currentList = list._root;
+                for(int i = 0; i<list.Length; i++)
+                {
+                    Node tmp2 = currentThis.Next;
+                    currentThis.Next = new Node(currentList.Value);
+                    currentThis.Next.Next = tmp2;
+                    currentList = currentList.Next;
+                    currentThis = currentThis.Next;
+                }
+                currentThis.Next = tmp1;
+                Length += list.Length;
+
+            }
+            else
+            {
+                for(int i = list.Length-1; i >=0; i--)
+                {
+                    AddFirst(list[i]);
+                }
+            }
+
+        }
+        public void AddLinkedListFromBiginning(LinkedList list)
+        {
+            AddLinkedListByIndex(list, 0);
+        }
+        public void AddLinkedListFromEnd(LinkedList list)
+        {
+            for(int i = 0; i<list.Length; i++)
+            {
+                Add(list[i]);
+            }
+        }
 
         public void SortAscending()
         {
