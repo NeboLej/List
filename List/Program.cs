@@ -6,10 +6,12 @@ namespace List
     {
         static void Main(string[] args)
         {
-            LinkedList Oleg = new LinkedList(new int[] { 0, -1, 200, 3, 224, -5});
-            Console.WriteLine(Oleg);
-            Oleg.Reverse();
-            Console.WriteLine(Oleg);
+            DoubleLinkedList oleg = new DoubleLinkedList(new int[] { 4, 8, 15 , 16, 23, 42});
+            Console.WriteLine(oleg);
+            oleg.AddByIndex(0, 100);
+            Console.WriteLine(oleg);
+
+
         }
     }
 }
