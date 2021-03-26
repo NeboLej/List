@@ -67,7 +67,7 @@ namespace List
 
         public void Add(int value)
         {
-            if(Length != 0)
+            if (Length != 0)
             {
                 Length++;
                 //DoubleNode tmp = _tail;
@@ -98,7 +98,7 @@ namespace List
             {
                 AddFirst(value);
             }
-            else if(index < 0 || index >= Length)
+            else if (index < 0 || index >= Length)
             {
                 Console.WriteLine("ошибка");
             }
@@ -120,7 +120,7 @@ namespace List
                 if (index > Length / 2)
                 {
                     DoubleNode current = _tail;
-                    for (int i = Length -1; i > index; i--)
+                    for (int i = Length - 1; i > index; i--)
                     {
                         current = current.Previous;
                     }
@@ -140,6 +140,58 @@ namespace List
             _root = _root.Previous;
             Length++;
         }
+
+        public void RemooveByIndex(int index)
+        {
+            if (index >= Length || index < 0)
+            {
+                Console.WriteLine("Ошибка");
+            }
+            else if (index == 0)
+            {
+                RemoveFirst();
+            }
+            else if(index == Length - 1)
+            {
+                RemoveEnd();
+            }
+            else if(index <= Length / 2)
+            {
+                DoubleNode current = _root;
+                for(int i = 1; i<index; i++)
+                {
+                    current = current.Next;
+                }
+                current.Next = current.Next.Next;
+                current.Next.Previous = current;
+                Length--;
+            }
+            else
+            {
+                DoubleNode current = _tail;
+                Console.WriteLine(_tail.Value);
+                for (int i = Length-2; i > index; i--)
+                {
+                    current = current.Previous;
+                }
+                current.Previous = current.Previous.Previous;
+                current.Previous.Next = current;
+                Length--;
+            }
+        }
+        public void RemoveFirst()
+        {
+            _root = _root.Next;
+            _root.Previous = null;
+            Length--;
+        }
+        public void RemoveEnd()
+        {
+            _tail = _tail.Previous;
+            _tail.Next = null;
+            Length--;
+        }
+
 
 
         public override bool Equals(object obj)
