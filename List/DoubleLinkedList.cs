@@ -141,7 +141,7 @@ namespace List
             Length++;
         }
 
-        public void RemooveByIndex(int index)
+        public void RemoveByIndex(int index)
         {
             if (index >= Length || index < 0)
             {
@@ -169,7 +169,6 @@ namespace List
             else
             {
                 DoubleNode current = _tail;
-                Console.WriteLine(_tail.Value);
                 for (int i = Length-2; i > index; i--)
                 {
                     current = current.Previous;
@@ -192,7 +191,85 @@ namespace List
             Length--;
         }
 
+        public void RemoveValuesByIndex(int index, int number)
+        {
 
+            if (index >= Length || index < 0)
+            {
+                Console.WriteLine("Ошибка");
+            }
+            else if (index+number > Length)
+            {
+                Console.WriteLine("Ошибка");
+            }
+            else if (index == 0 && number == Length)
+            {
+                Empty();
+            }
+            else if (index+number == Length)
+            {
+                RemoveValuesFromEnd(number);
+            }
+            else if (index == 0)
+            {
+                RemoveValuesFromBiginning(number);
+            }
+            
+            else if (index <= Length / 2)
+            {
+                DoubleNode current = _root;
+                for (int i = 1; i < index; i++)
+                {
+                    current = current.Next;
+                }
+                DoubleNode tmp = current;
+                for (int i = 0; i<number; i++)
+                {
+                    current = current.Next;
+                }
+                tmp.Next = current.Next;
+                current.Previous = tmp;
+                Length -= number;
+            }
+            else
+            {
+                DoubleNode current = _tail;
+                for (int i = Length - 1; i >= index; i--)
+                {
+                    current = current.Previous;
+                }
+                DoubleNode tmp = current;
+                for (int i = 0; i < number; i++)
+                {
+                    current = current.Next;
+                }
+                tmp.Next = current.Next;
+                current.Previous = tmp;
+                Length -= number;
+            }
+        }
+        public void RemoveValuesFromEnd(int number)
+        {
+            DoubleNode current = _tail;
+            for(int i = 1; i<=number; i++)
+            {
+                current = current.Previous;
+            }
+            _tail = current;
+            current.Next = null;
+            Length -= number;
+        }
+        public void RemoveValuesFromBiginning(int number)
+        {
+            DoubleNode current = _root;
+            for(int i = 1; i<=number; i++)
+            {
+                current = current.Next;
+            }
+            _root = current;
+            current.Previous = null;
+            Length -= number;
+        }
 
         public override bool Equals(object obj)
         {
@@ -247,6 +324,13 @@ namespace List
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+
+        private void Empty()
+        {
+            Length = 0;
+            _root = null;
+            _tail = null;
         }
 
 

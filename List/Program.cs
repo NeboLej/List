@@ -8,17 +8,10 @@ namespace List
         {
             DoubleLinkedList oleg = new DoubleLinkedList(new int[] { 4, 8, 15 , 16, 23, 42, 70, 100});
             Console.WriteLine(oleg);
-            oleg.RemoveFirst();
+            oleg.RemoveValuesByIndex(3, 0);
             Console.WriteLine(oleg);
-            oleg.RemoveEnd();
-            Console.WriteLine(oleg);
-            oleg.RemooveByIndex(0);
-            Console.WriteLine(oleg);
-            oleg.RemooveByIndex(4);
-            Console.WriteLine(oleg);
-            oleg.RemooveByIndex(4);
-            Console.WriteLine(oleg);
-
+            //oleg.RemuveValuesByIndex(0, 3);
+            //Console.WriteLine(oleg);
 
 
         }
