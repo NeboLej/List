@@ -271,6 +271,114 @@ namespace List
             Length -= number;
         }
 
+        public int SearchIndexByValue(int value)
+        {
+            DoubleNode current = _root;
+            for(int i = 0; i<Length-1; i++)
+            {
+                if(current.Value == value)
+                {
+                    return i;
+                }
+                current = current.Next;
+            }
+            return -1;
+        }
+        public int SearchIndexMaximumValue()
+        {
+            int[] values = new int[2];
+            values = SearchIndexAndValueMaximumElement();
+            return values[0];
+        }
+        public int SearchMaximumValue()
+        {
+            int[] values = new int[2];
+            values = SearchIndexAndValueMaximumElement();
+            return values[1];
+        }
+        public int SearchIndexMinimumValue()
+        {
+            int[] values = new int[2];
+            values = SearchIndexAndValueMinimumElement();
+            return values[0];
+
+        }
+        public int SearchMinimumValue()
+        {
+            int[] values = new int[2];
+            values = SearchIndexAndValueMinimumElement();
+            return values[1];
+
+        }
+
+        public void SortAscending()
+        {
+            int[] firstElement = new int[2];
+            firstElement = SearchIndexAndValueMinimumElement();
+            RemoveByIndex(firstElement[0]);
+            DoubleLinkedList tmpList = new DoubleLinkedList(firstElement[1]);
+
+            while (Length != 0)
+            {
+                int[] minimum = SearchIndexAndValueMinimumElement();
+                RemoveByIndex(minimum[0]);
+                tmpList.Add(minimum[1]);
+            }
+            this._root = tmpList._root;
+            Length = tmpList.Length;
+        }
+        public void SortDescending()
+        {
+            int[] firstElement = new int[2];
+            firstElement = SearchIndexAndValueMaximumElement();
+            RemoveByIndex(firstElement[0]);
+            DoubleLinkedList tmpList = new DoubleLinkedList(firstElement[1]);
+
+            while (Length != 0)
+            {
+                int[] maximum = SearchIndexAndValueMaximumElement();
+                RemoveByIndex(maximum[0]);
+                tmpList.Add(maximum[1]);
+            }
+            this._root = tmpList._root;
+            Length = tmpList.Length;
+        }
+
+        public void RemoveTheFirstByValue(int value)
+        {
+
+            int index = SearchIndexByValue(value);
+            if (index != -1)
+            {
+                RemoveByIndex(index);
+            }
+        }
+        public void RemoveAllByValue(int value)
+        {
+            int index = SearchIndexByValue(value);
+            while (index != -1)
+            {
+                RemoveByIndex(index);
+                index = SearchIndexByValue(value);
+            }
+        }
+
+        public void Revers()
+        {
+            DoubleNode currentOne = _root;
+            DoubleNode currentTwo = _tail;
+
+
+            for (int i = 0; i<Length/2; i++)
+            {
+                int tmp = currentOne.Value;
+                currentOne.Value = currentTwo.Value;
+                currentTwo.Value = tmp;
+                currentOne = currentOne.Next;
+                currentTwo = currentTwo.Previous;
+            }
+        }
+
         public override bool Equals(object obj)
         {
             DoubleLinkedList list = (DoubleLinkedList)obj;
@@ -325,6 +433,43 @@ namespace List
         {
             return base.GetHashCode();
         }
+
+
+        private int[] SearchIndexAndValueMaximumElement()
+        {
+            int indexMaxElement = 0;
+            int maxElement = _root.Value;
+            DoubleNode current = _root;
+            for (int i = 0; i < Length; i++)
+            {
+                if (current.Value > maxElement)
+                {
+                    maxElement = current.Value;
+                    indexMaxElement = i;
+                }
+                current = current.Next;
+            }
+            return new int[] { indexMaxElement, maxElement };
+
+        }
+        private int[] SearchIndexAndValueMinimumElement()
+        {
+            int indexMinElement = 0;
+            int minElement = _root.Value;
+            DoubleNode current = _root;
+            for (int i = 0; i < Length; i++)
+            {
+                if (current.Value < minElement)
+                {
+                    minElement = current.Value;
+                    indexMinElement = i;
+                }
+                current = current.Next;
+            }
+            return new int[] { indexMinElement, minElement };
+
+        }
+
 
         private void Empty()
         {

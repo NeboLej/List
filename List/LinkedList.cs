@@ -204,24 +204,8 @@ namespace List
 
         }
 
+
         public void Revers()
-        {
-            LinkedList tmp = new LinkedList(_tail.Value);
-            Node current = _root;
-
-            for (int i = 1; i <=Length-1; i++)
-            {
-                current = _root;
-                for (int j = 1; j<=Length-1-i; j++)
-                {
-                    current = current.Next;
-                }
-                tmp.Add(current.Value);
-            }
-            _root = tmp._root;
-        }
-
-        public void Reverse()
         {
             Node prev = _root;
             Node next = null;
@@ -350,7 +334,6 @@ namespace List
             this._root = tmpList._root;
             Length = tmpList.Length;
         }
-
         public void SortDescending()
         {
             int[] firstElement = new int[2];
