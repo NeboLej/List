@@ -378,6 +378,78 @@ namespace List
                 currentTwo = currentTwo.Previous;
             }
         }
+        public void AddListFromBiginning(DoubleLinkedList list)
+        {
+            DoubleNode currentList = list._tail;
+            for(int i =1; i <=list.Length; i++)
+            {
+                AddFirst(currentList.Value);
+                currentList = currentList.Previous;
+            }
+        }
+        public void AddListByIndex(int index, DoubleLinkedList list)
+        {
+            if (index >= Length || index < 0)
+            {
+                Console.WriteLine("Ошибка");
+            }
+            else if (index == 0)
+            {
+                AddListFromBiginning(list);
+            }
+            else if (index <= Length/2)
+            {
+                DoubleNode currentThis = _root;
+                for (int i = 1; i < index; i++)
+                {
+                     currentThis = currentThis.Next;
+                }
+                DoubleNode tmp1 = currentThis.Next;
+                DoubleNode currentList = list._root;
+                for (int i = 0; i < list.Length; i++)
+                {
+                   DoubleNode tmp2 = currentThis.Next;
+                   currentThis.Next = new DoubleNode(currentList.Value);
+                   currentThis.Next.Next = tmp2;
+                   currentList = currentList.Next;
+                   currentThis = currentThis.Next;
+                }
+                currentThis.Next = tmp1;
+                Length += list.Length;
+            }
+            else
+            {
+                DoubleNode currentThis = _tail;
+                for (int i = 1; i <= Length-index; i++)
+                {
+                    currentThis = currentThis.Previous;
+                }
+                DoubleNode tmp1 = currentThis.Next;
+                DoubleNode currentList = list._root;
+                for (int i = 0; i < list.Length; i++)
+                {
+                    DoubleNode tmp2 = currentThis.Next;
+                    currentThis.Next = new DoubleNode(currentList.Value);
+                    currentThis.Next.Next = tmp2;
+                    currentList = currentList.Next;
+                    currentThis = currentThis.Next;
+                }
+                currentThis.Next = tmp1;
+                Length += list.Length;
+
+
+            }
+
+        }
+        public void AddListByEnd(DoubleLinkedList list)
+        {
+            DoubleNode currentList = list._root;
+            for(int i =1; i<=list.Length; i++)
+            {
+                Add(currentList.Value);
+                currentList = currentList.Next;
+            }
+        }
 
         public override bool Equals(object obj)
         {
