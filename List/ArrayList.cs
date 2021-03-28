@@ -83,7 +83,7 @@ namespace List
             _array[index] = value;
             Length++;
         }
-        public void RemovingValuesByIndex(int index, int number)
+        public void RemoveValuesByIndex(int index, int number)
         {
             if (index > Length - 1 || index < 0)
             {
@@ -132,9 +132,9 @@ namespace List
 
 
 
-        public void RemovingValuesFromBeginning(int number)
+        public void RemoveValuesFromBeginning(int number)
         {
-            RemovingValuesByIndex(0, number);
+            RemoveValuesByIndex(0, number);
         }
         public void RemovingValuesFromEnd(int number)
         {
