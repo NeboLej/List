@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace List.Tests
 {
-    class DoubleDoubleLinkedListTests
+    class DoubleLinkedListTests
     {
         [TestCase(15, new int[] { 11 }, new int[] { 11, 15 })]
         [TestCase(-10, new int[] { 60, 90, 120, 150, 180 }, new int[] { 60, 90, 120, 150, 180, -10 })]
