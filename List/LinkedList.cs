@@ -78,12 +78,11 @@ namespace List
         
         public void RemoveByIndex(int index)
         {
+            if (index > Length || index < 0)
+            {
+                throw new IndexOutOfRangeException("Неверный индекс элемента");
+            }
             Node current = _root;
-            //if (index == Length - 1)
-            //{
-            //    _tail.Next = current;
-            //    _tail = _tail.Next;
-            //}
             if( index == 0)
             {
                 RemoveFirst();
@@ -136,6 +135,11 @@ namespace List
 
         public void AddByIndex(int value, int index)
         {
+            if (index > Length || index < 0)
+            {
+                throw new IndexOutOfRangeException("Неверный индекс элемента");
+            }
+
             Node current = _root;
            
             for (int i = 1; i < index; i++)
@@ -151,6 +155,20 @@ namespace List
 
         public void RemoveValuesByIndex(int index, int number)
         {
+            if (index > Length - 1 || index < 0)
+            {
+                throw new IndexOutOfRangeException("Неверный индекс элемента");
+            }
+
+            if (index + number > Length)
+            {
+                throw new ArgumentOutOfRangeException("Ваш список меньше количества удаляемых элементов");
+            }
+
+            if (number <= 0)
+            {
+                throw new ArgumentOutOfRangeException("колличество удаляемых элементов должно быть больше 0");
+            }
             if (index != 0)
             {
                 Node current = _root;
@@ -173,6 +191,16 @@ namespace List
         }
         public void RemoveValuesFromBeginning(int number)
         {
+            if (number > Length)
+            {
+                throw new ArgumentOutOfRangeException("Ваш список меньше количества удаляемых элементов");
+            }
+            if (number <= 0)
+            {
+                throw new ArgumentOutOfRangeException("колличество удаляемых элементов должно быть больше 0");
+            }
+
+
             if (number != Length)
             {
                 for (int i = 0; i < number; i++)
@@ -189,6 +217,16 @@ namespace List
         }
         public void RemoveValuesFromEnd(int number)
         {
+            if (number > Length)
+            {
+                throw new ArgumentOutOfRangeException("Ваш список меньше количества удаляемых элементов");
+            }
+            if (number <= 0)
+            {
+                throw new ArgumentOutOfRangeException("колличество удаляемых элементов должно быть больше 0");
+            }
+
+
             if (Length != number)
             {
                 int index = Length - number;
@@ -198,8 +236,6 @@ namespace List
             {
                 Empty();
             }
-            //_tail.Next = new Node(value);
-            //_tail = _tail.Next;
 
 
         }
@@ -275,7 +311,12 @@ namespace List
 
         public void AddLinkedListByIndex(LinkedList list, int index)
         {
-            if(index != 0)
+            if (index > Length || index < 0)
+            {
+                throw new IndexOutOfRangeException("Неверный индекс элемента");
+            }
+
+            if (index != 0)
             {
 
                 Node currentThis = _root;

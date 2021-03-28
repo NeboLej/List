@@ -100,7 +100,7 @@ namespace List
             }
             else if (index < 0 || index >= Length)
             {
-                Console.WriteLine("ошибка");
+                throw new IndexOutOfRangeException("Неверный индекс элемента");
             }
             else if (index <= Length / 2)
             {
@@ -145,7 +145,7 @@ namespace List
         {
             if (index >= Length || index < 0)
             {
-                Console.WriteLine("Ошибка");
+                throw new IndexOutOfRangeException("Неверный индекс элемента");
             }
             else if (index == 0)
             {
@@ -181,7 +181,6 @@ namespace List
         public void RemoveFirst()
         {
             _root = _root.Next;
-            _root.Previous = null;
             Length--;
         }
         public void RemoveEnd()
@@ -193,16 +192,22 @@ namespace List
 
         public void RemoveValuesByIndex(int index, int number)
         {
+            if (index > Length - 1 || index < 0)
+            {
+                throw new IndexOutOfRangeException("Неверный индекс элемента");
+            }
 
-            if (index >= Length || index < 0)
+            if (index + number > Length)
             {
-                Console.WriteLine("Ошибка");
+                throw new ArgumentOutOfRangeException("Ваш список меньше количества удаляемых элементов");
             }
-            else if (index+number > Length)
+
+            if (number <= 0)
             {
-                Console.WriteLine("Ошибка");
+                throw new ArgumentOutOfRangeException("колличество удаляемых элементов должно быть больше 0");
             }
-            else if (index == 0 && number == Length)
+
+            if (index == 0 && number == Length)
             {
                 Empty();
             }
@@ -250,6 +255,15 @@ namespace List
         }
         public void RemoveValuesFromEnd(int number)
         {
+            if (number > Length)
+            {
+                throw new ArgumentOutOfRangeException("Ваш список меньше количества удаляемых элементов");
+            }
+            if (number <= 0)
+            {
+                throw new ArgumentOutOfRangeException("колличество удаляемых элементов должно быть больше 0");
+            }
+
             if (number < Length) 
             { 
                 DoubleNode current = _tail;
@@ -261,17 +275,21 @@ namespace List
                 current.Next = null;
                 Length -= number;
             }
-            else if(number == Length)
-            {
-                Empty();
-            }
             else
             {
-                Console.WriteLine("Ошибка");
+                Empty();
             }
         }
         public void RemoveValuesFromBeginning(int number)
         {
+            if (number > Length)
+            {
+                throw new ArgumentOutOfRangeException("Ваш список меньше количества удаляемых элементов");
+            }
+            if (number <= 0)
+            {
+                throw new ArgumentOutOfRangeException("колличество удаляемых элементов должно быть больше 0");
+            }
             DoubleNode current = _root;
             for(int i = 1; i<=number; i++)
             {
@@ -402,7 +420,7 @@ namespace List
         {
             if (index >= Length || index < 0)
             {
-                Console.WriteLine("Ошибка");
+                throw new IndexOutOfRangeException("Неверный индекс элемента");
             }
             else if (index == 0)
             {

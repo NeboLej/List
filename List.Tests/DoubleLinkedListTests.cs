@@ -116,8 +116,8 @@ namespace List.Tests
         [TestCase(18, new int[] { 30, 60, 90, 120, 150, 180 }, -1)]
         public void Test10(int value, int[] actualArray, int expected)
         {
-            DoubleLinkedList actualArrayList = new DoubleLinkedList(actualArray);
-            int actual = actualArrayList.SearchIndexByValue(value);
+            DoubleLinkedList actualDoubleLinkedList = new DoubleLinkedList(actualArray);
+            int actual = actualDoubleLinkedList.SearchIndexByValue(value);
             Assert.AreEqual(expected, actual);
         }
 
@@ -135,8 +135,8 @@ namespace List.Tests
         [TestCase(new int[] { 10, 30, 60, 7, 90 }, 90)]
         public void Test12(int[] actualArray, int expected)
         {
-            DoubleLinkedList actualArrayList = new DoubleLinkedList(actualArray);
-            int actual = actualArrayList.SearchMaximumValue();
+            DoubleLinkedList actualDoubleLinkedList = new DoubleLinkedList(actualArray);
+            int actual = actualDoubleLinkedList.SearchMaximumValue();
             Assert.AreEqual(expected, actual);
         }
 
@@ -145,8 +145,8 @@ namespace List.Tests
         [TestCase(new int[] { 10, 30, 60, 7, 90 }, 7)]
         public void Test13(int[] actualArray, int expected)
         {
-            DoubleLinkedList actualArrayList = new DoubleLinkedList(actualArray);
-            int actual = actualArrayList.SearchMinimumValue();
+            DoubleLinkedList actualDoubleLinkedList = new DoubleLinkedList(actualArray);
+            int actual = actualDoubleLinkedList.SearchMinimumValue();
             Assert.AreEqual(expected, actual);
         }
 
@@ -155,8 +155,8 @@ namespace List.Tests
         [TestCase(new int[] { 10, 30, 60, 7, -90, 90 }, 5)]
         public void Test14(int[] actualArray, int expected)
         {
-            DoubleLinkedList actualArrayList = new DoubleLinkedList(actualArray);
-            int actual = actualArrayList.SearchIndexMaximumValue();
+            DoubleLinkedList actualDoubleLinkedList = new DoubleLinkedList(actualArray);
+            int actual = actualDoubleLinkedList.SearchIndexMaximumValue();
             Assert.AreEqual(expected, actual);
         }
 
@@ -165,8 +165,8 @@ namespace List.Tests
         [TestCase(new int[] { 10, 30, 60, 7, 90 }, 3)]
         public void Test15(int[] actualArray, int expected)
         {
-            DoubleLinkedList actualArrayList = new DoubleLinkedList(actualArray);
-            int actual = actualArrayList.SearchIndexMinimumValue();
+            DoubleLinkedList actualDoubleLinkedList = new DoubleLinkedList(actualArray);
+            int actual = actualDoubleLinkedList.SearchIndexMinimumValue();
             Assert.AreEqual(expected, actual);
         }
 
@@ -217,11 +217,11 @@ namespace List.Tests
         [TestCase(1, new int[] { 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 15, 180, 0, 90, 1200, 15, 180 })]
         [TestCase(3, new int[] { 777, 777, 777 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 777, 777, 777, 1200, 15, 180 })]
         [TestCase(0, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180, 30, 0, 90, 1200, 15, 180 })]
-        public void Test20(int index, int[] arrayList, int[] actualArray, int[] expectedArray)
+        public void Test20(int index, int[] DoubleLinkedList, int[] actualArray, int[] expectedArray)
         {
             DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
             DoubleLinkedList actual = new DoubleLinkedList(actualArray);
-            DoubleLinkedList list = new DoubleLinkedList(arrayList);
+            DoubleLinkedList list = new DoubleLinkedList(DoubleLinkedList);
             actual.AddListByIndex(index, list);
             Assert.AreEqual(expected, actual);
         }
@@ -230,11 +230,11 @@ namespace List.Tests
         [TestCase(new int[] { 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180, 15, 180 })]
         [TestCase(new int[] { 777, 777, 777 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180, 777, 777, 777 })]
         [TestCase(new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180, 30, 0, 90, 1200, 15, 180 })]
-        public void Test21(int[] arrayList, int[] actualArray, int[] expectedArray)
+        public void Test21(int[] DoubleLinkedList, int[] actualArray, int[] expectedArray)
         {
             DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
             DoubleLinkedList actual = new DoubleLinkedList(actualArray);
-            DoubleLinkedList list = new DoubleLinkedList(arrayList);
+            DoubleLinkedList list = new DoubleLinkedList(DoubleLinkedList);
             actual.AddListFromEnd(list);
             Assert.AreEqual(expected, actual);
         }
@@ -242,107 +242,107 @@ namespace List.Tests
         [TestCase(new int[] { 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 15, 180, 30, 0, 90, 1200, 15, 180 })]
         [TestCase(new int[] { 777, 777, 777 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 777, 777, 777, 30, 0, 90, 1200, 15, 180 })]
         [TestCase(new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180 }, new int[] { 30, 0, 90, 1200, 15, 180, 30, 0, 90, 1200, 15, 180 })]
-        public void Test22(int[] arrayList, int[] actualArray, int[] expectedArray)
+        public void Test22(int[] DoubleLinkedList, int[] actualArray, int[] expectedArray)
         {
             DoubleLinkedList expected = new DoubleLinkedList(expectedArray);
             DoubleLinkedList actual = new DoubleLinkedList(actualArray);
-            DoubleLinkedList list = new DoubleLinkedList(arrayList);
+            DoubleLinkedList list = new DoubleLinkedList(DoubleLinkedList);
             actual.AddListFromBeginning(list);
             Assert.AreEqual(expected, actual);
         }
 
 
 
-        ////NEGATIVE TESTS
+        //NEGATIVE TESTS
 
 
-        //[TestCase(15, -2, new int[] { 30, 60, 90, 120, 150, 180 })]
-        //[TestCase(1, 4, new int[] { 30, 60, 90 })]
-        //public void Tes23(int a, int index, int[] actualArray)
-        //{
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    Assert.Throws<IndexOutOfRangeException>(() => actual.AddValueByIndex(a, index));
-        //}
+        [TestCase(15, -2, new int[] { 30, 60, 90, 120, 150, 180 })]
+        [TestCase(1, 4, new int[] { 30, 60, 90 })]
+        public void Tes23(int value, int index, int[] actualArray)
+        {
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            Assert.Throws<IndexOutOfRangeException>(() => actual.AddByIndex(index, value));
+        }
 
-        //[TestCase(-2, new int[] { 30, 60, 90, 120, 150, 180 })]
-        //[TestCase(3, new int[] { 30, 60, 90 })]
-        //public void Tes24(int index, int[] actualArray)
-        //{
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    Assert.Throws<IndexOutOfRangeException>(() => actual.RemoveValueByIndex(index));
-        //}
-
-
-        //[TestCase(-2, 1, new int[] { 30, 60, 90, 120, 150, 180 })]
-        //[TestCase(3, 1, new int[] { 30, 60, 90 })]
-        //public void Tes24(int index, int number, int[] actualArray)
-        //{
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    Assert.Throws<IndexOutOfRangeException>(() => actual.RemovingValuesByIndex(index, number));
-        //}
+        [TestCase(-2, new int[] { 30, 60, 90, 120, 150, 180 })]
+        [TestCase(3, new int[] { 30, 60, 90 })]
+        public void Tes24(int index, int[] actualArray)
+        {
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            Assert.Throws<IndexOutOfRangeException>(() => actual.RemoveByIndex(index));
+        }
 
 
-        //[TestCase(2, 5, new int[] { 30, 60, 90, 120, 150, 180 })]
-        //[TestCase(2, 2, new int[] { 30, 60, 90 })]
-        //public void Tes25(int index, int number, int[] actualArray)
-        //{
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    Assert.Throws<ArgumentOutOfRangeException>(() => actual.RemovingValuesByIndex(index, number));
-
-        //}
-        //[TestCase(2, 0, new int[] { 30, 60, 90, 120, 150, 180 })]
-        //[TestCase(2, -2, new int[] { 30, 60, 90 })]
-        //public void Tes29(int index, int number, int[] actualArray)
-        //{
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    Assert.Throws<ArgumentOutOfRangeException>(() => actual.RemovingValuesByIndex(index, number));
-        //}
+        [TestCase(-2, 1, new int[] { 30, 60, 90, 120, 150, 180 })]
+        [TestCase(3, 1, new int[] { 30, 60, 90 })]
+        public void Tes24(int index, int number, int[] actualArray)
+        {
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            Assert.Throws<IndexOutOfRangeException>(() => actual.RemoveValuesByIndex(index, number));
+        }
 
 
-        //[TestCase(7, new int[] { 30, 60, 90, 120, 150, 180 })]
-        //[TestCase(10, new int[] { 30, 60, 90 })]
-        //public void Tes26(int number, int[] actualArray)
-        //{
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    Assert.Throws<ArgumentOutOfRangeException>(() => actual.RemovingValuesFromBeginning(number));
-        //}
+        [TestCase(2, 5, new int[] { 30, 60, 90, 120, 150, 180 })]
+        [TestCase(2, 2, new int[] { 30, 60, 90 })]
+        public void Tes25(int index, int number, int[] actualArray)
+        {
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            Assert.Throws<ArgumentOutOfRangeException>(() => actual.RemoveValuesByIndex(index, number));
 
-        //[TestCase(0, new int[] { 30, 60, 90, 120, 150, 180 })]
-        //[TestCase(-2, new int[] { 30, 60, 90 })]
-        //public void Tes30(int number, int[] actualArray)
-        //{
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    Assert.Throws<ArgumentOutOfRangeException>(() => actual.RemovingValuesFromBeginning(number));
-        //}
-
-
+        }
+        [TestCase(2, 0, new int[] { 30, 60, 90, 120, 150, 180 })]
+        [TestCase(2, -2, new int[] { 30, 60, 90 })]
+        public void Tes29(int index, int number, int[] actualArray)
+        {
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            Assert.Throws<ArgumentOutOfRangeException>(() => actual.RemoveValuesByIndex(index, number));
+        }
 
 
-        //[TestCase(7, new int[] { 30, 60, 90, 120, 150, 180 })]
-        //[TestCase(10, new int[] { 30, 60, 90 })]
-        //public void Tes27(int number, int[] actualArray)
-        //{
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    Assert.Throws<ArgumentOutOfRangeException>(() => actual.RemovingValuesFromEnd(number));
-        //}
+        [TestCase(7, new int[] { 30, 60, 90, 120, 150, 180 })]
+        [TestCase(10, new int[] { 30, 60, 90 })]
+        public void Tes26(int number, int[] actualArray)
+        {
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            Assert.Throws<ArgumentOutOfRangeException>(() => actual.RemoveValuesFromBeginning(number));
+        }
 
-        //[TestCase(0, new int[] { 30, 60, 90, 120, 150, 180 })]
-        //[TestCase(-2, new int[] { 30, 60, 90 })]
-        //public void Tes31(int number, int[] actualArray)
-        //{
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    Assert.Throws<ArgumentOutOfRangeException>(() => actual.RemovingValuesFromEnd(number));
-        //}
+        [TestCase(0, new int[] { 30, 60, 90, 120, 150, 180 })]
+        [TestCase(-2, new int[] { 30, 60, 90 })]
+        public void Tes30(int number, int[] actualArray)
+        {
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            Assert.Throws<ArgumentOutOfRangeException>(() => actual.RemoveValuesFromBeginning(number));
+        }
 
 
-        //[TestCase(-2, new int[] { 15, 180 }, new int[] { 30, 60, 90, 120, 150, 180 })]
-        //[TestCase(10, new int[] { 15, 180 }, new int[] { 30, 60, 90 })]
-        //public void Tes28(int index, int[] addArray, int[] actualArray)
-        //{
-        //    ArrayList list = new ArrayList(addArray);
-        //    ArrayList actual = new ArrayList(actualArray);
-        //    Assert.Throws<IndexOutOfRangeException>(() => actual.AddArrayByIndex(list, index));
-        //}
+
+
+        [TestCase(7, new int[] { 30, 60, 90, 120, 150, 180 })]
+        [TestCase(10, new int[] { 30, 60, 90 })]
+        public void Tes27(int number, int[] actualArray)
+        {
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            Assert.Throws<ArgumentOutOfRangeException>(() => actual.RemoveValuesFromEnd(number));
+        }
+
+        [TestCase(0, new int[] { 30, 60, 90, 120, 150, 180 })]
+        [TestCase(-2, new int[] { 30, 60, 90 })]
+        public void Tes31(int number, int[] actualArray)
+        {
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            Assert.Throws<ArgumentOutOfRangeException>(() => actual.RemoveValuesFromEnd(number));
+        }
+
+
+        [TestCase(-2, new int[] { 15, 180 }, new int[] { 30, 60, 90, 120, 150, 180 })]
+        [TestCase(10, new int[] { 15, 180 }, new int[] { 30, 60, 90 })]
+        public void Tes28(int index, int[] addArray, int[] actualArray)
+        {
+            DoubleLinkedList list = new DoubleLinkedList(addArray);
+            DoubleLinkedList actual = new DoubleLinkedList(actualArray);
+            Assert.Throws<IndexOutOfRangeException>(() => actual.AddListByIndex(index, list));
+        }
 
 
 
