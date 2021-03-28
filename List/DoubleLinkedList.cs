@@ -212,7 +212,7 @@ namespace List
             }
             else if (index == 0)
             {
-                RemoveValuesFromBiginning(number);
+                RemoveValuesFromBeginning(number);
             }
             
             else if (index <= Length / 2)
@@ -250,16 +250,27 @@ namespace List
         }
         public void RemoveValuesFromEnd(int number)
         {
-            DoubleNode current = _tail;
-            for(int i = 1; i<=number; i++)
-            {
-                current = current.Previous;
+            if (number < Length) 
+            { 
+                DoubleNode current = _tail;
+                for(int i = 1; i<=number; i++)
+                {
+                    current = current.Previous;
+                }
+                _tail = current;
+                current.Next = null;
+                Length -= number;
             }
-            _tail = current;
-            current.Next = null;
-            Length -= number;
+            else if(number == Length)
+            {
+                Empty();
+            }
+            else
+            {
+                Console.WriteLine("Ошибка");
+            }
         }
-        public void RemoveValuesFromBiginning(int number)
+        public void RemoveValuesFromBeginning(int number)
         {
             DoubleNode current = _root;
             for(int i = 1; i<=number; i++)
@@ -274,7 +285,7 @@ namespace List
         public int SearchIndexByValue(int value)
         {
             DoubleNode current = _root;
-            for(int i = 0; i<Length-1; i++)
+            for(int i = 0; i<Length; i++)
             {
                 if(current.Value == value)
                 {
@@ -378,7 +389,7 @@ namespace List
                 currentTwo = currentTwo.Previous;
             }
         }
-        public void AddListFromBiginning(DoubleLinkedList list)
+        public void AddListFromBeginning(DoubleLinkedList list)
         {
             DoubleNode currentList = list._tail;
             for(int i =1; i <=list.Length; i++)
@@ -395,7 +406,7 @@ namespace List
             }
             else if (index == 0)
             {
-                AddListFromBiginning(list);
+                AddListFromBeginning(list);
             }
             else if (index <= Length/2)
             {
@@ -441,7 +452,7 @@ namespace List
             }
 
         }
-        public void AddListByEnd(DoubleLinkedList list)
+        public void AddListFromEnd(DoubleLinkedList list)
         {
             DoubleNode currentList = list._root;
             for(int i =1; i<=list.Length; i++)

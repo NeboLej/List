@@ -9,8 +9,10 @@ namespace List
             DoubleLinkedList oleg = new DoubleLinkedList(new int[] { 0, 1, 2, 3, 4, 5 ,6 ,7 ,8, 9, 10,11, 12});
             DoubleLinkedList vitia = new DoubleLinkedList(new int[] { 10, 20, 30 });
             Console.WriteLine(oleg);
-            Console.WriteLine(vitia);
-            oleg.AddListByEnd(vitia);
+            oleg.SortAscending();
+            //oleg.AddByIndex(8, 10);
+            //Console.WriteLine(vitia);
+            //oleg.AddListByEnd(vitia);
             //oleg.AddListByIndex(13, vitia);
             //vitia.Revers();
             Console.WriteLine(oleg);
