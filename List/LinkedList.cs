@@ -78,7 +78,7 @@ namespace List
         
         public void RemoveByIndex(int index)
         {
-            if (index > Length || index < 0)
+            if (index >= Length || index < 0)
             {
                 throw new IndexOutOfRangeException("Неверный индекс элемента");
             }
